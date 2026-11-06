@@ -3,6 +3,10 @@
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
     "http-proxy": "^1.18.1"
+    "react-dom": "19.0.0",
+"react-native-web": "0.20.0",
+"@expo/metro-runtime": "~5.0.0"
+
   },
   "name": "NOWGG-X",
   "description": "NOWGG-X is the most recent Now.gg repo that is well known for being the combination of CybriaGG and our additional content!",
