@@ -1,28 +1,23 @@
-const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+export default {
+  async fetch(request) {
+    const url = new URL(request.url);
+    const targetUrl = 'https://mathsspot.com' + url.pathname + url.search;
 
-const app = express();
+    const headers = new Headers(request.headers);
 
-const nggUrl = 'https://mathsspot.com';
+    // Limpa headers de forwarding
+    headers.delete('X-Forwarded-For');
+    headers.delete('X-Real-IP');
+    headers.delete('Via');
+    headers.delete('Host');
 
-const proxy = createProxyMiddleware({
-  target: nggUrl,
-  changeOrigin: true,
-  secure: true,
-  logLevel: 'debug',
-  router: function(req) {
-    if (req.headers.host === 'mathsspot.com') {
-      req.headers['X-Forwarded-For'] = ''; 
-      req.headers['X-Real-IP'] = '';
-      req.headers['Via'] = '';
-    }
-    return nggUrl;
+    const modifiedRequest = new Request(targetUrl, {
+      method: request.method,
+      headers: headers,
+      body: request.body,
+      redirect: 'follow',
+    });
+
+    return fetch(modifiedRequest);
   }
-});
-
-app.use('/', proxy);
-
-const port = process.env.PORT || 443;
-app.listen(port, () => {
-  console.log(`CybriaGG is running on port ${port}`);
-});
+};
