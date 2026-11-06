@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "now-gg-x",
+  "main": "index.js",
+  "compatibility_date": "2026-11-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  }
+}
