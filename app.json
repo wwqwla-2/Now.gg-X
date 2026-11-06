@@ -4,4 +4,9 @@
     "repository": "https://github.com/CybriaTech/CybriaGG/",
     "logo": "https://github.com/CybriaTech/CybriaGG/blob/main/public/cygg-logo-invert.png?raw=true",
     "keywords": ["roblox"]
+
+  "expo": {
+    "platforms": ["ios", "android", "web"]
+  }
+
 }
